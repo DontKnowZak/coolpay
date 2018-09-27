@@ -23,6 +23,7 @@ module Coolpay
     end
 
     def make_payment(amount, recipient_id, currency: @currency, token: @token)
+
       response = RestClient.post @url + 'payments', {"payment": {
         "amount": amount,
         "currency": currency,
@@ -32,6 +33,10 @@ module Coolpay
     end
 
     def payment_status(payment_id)
+      response = RestClient.get @url + 'payments', {'Authorization': 'Bearer '+ token}
+      payments = JSON.parse(response)['payments']
+      payment = payments.select { |payment| payment['id'] == payment_id } [0]
+      payment['status']
     end
   end
 end
