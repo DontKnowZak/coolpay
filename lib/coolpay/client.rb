@@ -13,5 +13,9 @@ module Coolpay
       @token = parsed_response['token']
       self
     end
+
+    def add_recipient
+
+    end
   end
 end
