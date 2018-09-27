@@ -32,11 +32,16 @@ module Coolpay
       payment = JSON.parse(response)['payment']
     end
 
-    def payment_status(payment_id)
-      response = RestClient.get @url + 'payments', {'Authorization': 'Bearer '+ token}
-      payments = JSON.parse(response)['payments']
+    def payment_status(payment_id, token: @token)
+      payments = retrieve_payments(token)
       payment = payments.select { |payment| payment['id'] == payment_id } [0]
       payment['status']
+    end
+
+    private
+    def retrieve_payments(token = @token)
+      response = RestClient.get @url + 'payments', {'Authorization': 'Bearer '+ token}
+      JSON.parse(response)['payments']
     end
   end
 end
