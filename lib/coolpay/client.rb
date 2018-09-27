@@ -23,7 +23,6 @@ module Coolpay
     end
 
     def make_payment(amount, recipient_id, currency: @currency, token: @token)
-
       response = RestClient.post @url + 'payments', {"payment": {
         "amount": amount,
         "currency": currency,
