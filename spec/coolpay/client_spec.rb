@@ -28,4 +28,20 @@ describe Coolpay::Client do
       expect(recipient['name']).to eq @name
     end
   end
+
+  describe '#make_payment' do
+    before do
+      @client = Coolpay::Client.new
+      @id = "recipient_id"
+      stub_request(:any, 'https://coolpay.herokuapp.com/api/payments').
+        to_return(body: "{\"payment\":{\"status\":\"processing\",\"recipient_id\":\"recipient_id\",\"id\":\"payment_id\",\"currency\":\"GBP\",\"amount\":\"5\"}}")
+    end
+
+    it 'stores the token from the response in @token' do
+      amount = 5
+      payment = @client.make_payment(amount, @id, token: 'madeuptoken')
+      expect(payment['id']).to eq 'payment_id'
+      expect(payment['amount']).to eq amount.to_s
+    end
+  end
 end
