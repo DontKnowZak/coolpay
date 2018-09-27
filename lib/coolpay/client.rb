@@ -17,7 +17,7 @@ module Coolpay
       self
     end
 
-    def add_recipient(name, token = @token)
+    def add_recipient(name, token: @token)
       response = RestClient.post @url + 'recipients', {'recipient': {'name': name}}, {'Authorization': 'Bearer '+ token}
       recipient = JSON.parse(response)['recipient']
     end

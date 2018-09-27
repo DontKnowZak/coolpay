@@ -23,7 +23,7 @@ describe Coolpay::Client do
     end
 
     it 'stores the token from the response in @token' do
-      recipient = @client.add_recipient(@name, 'madeuptoken')
+      recipient = @client.add_recipient(@name, token: 'madeuptoken')
       expect(recipient['id']).to eq 'madeupid'
       expect(recipient['name']).to eq @name
     end
