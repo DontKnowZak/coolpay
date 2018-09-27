@@ -1,4 +1,5 @@
 require 'rest-client'
+require 'json'
 module Coolpay
   class Client
     def initialize
@@ -7,7 +8,10 @@ module Coolpay
 
     def login(credentials)
       @username, @api_key = credentials.values_at(:username, :api_key)
-      RestClient.post @url + 'login', {"username": @username, "apikey": @api_key}
+      response = RestClient.post @url + 'login', {'username': @username, 'apikey': @api_key}
+      parsed_response = JSON.parse response
+      @token = parsed_response['token']
+      self
     end
   end
 end
