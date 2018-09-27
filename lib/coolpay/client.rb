@@ -6,6 +6,7 @@ module Coolpay
 
     def initialize
       @url = 'https://coolpay.herokuapp.com/api/'
+      @currency = "GBP"
     end
 
     def login(credentials)
@@ -19,6 +20,9 @@ module Coolpay
     def add_recipient(name, token = @token)
       response = RestClient.post @url + 'recipients', {'recipient': {'name': name}}, {'Authorization': 'Bearer '+ token}
       recipient = JSON.parse(response)['recipient']
+    end
+
+    def make_payment(amount, recipient, currency = @currency)
     end
   end
 end
