@@ -1,3 +1,4 @@
+require 'rest-client'
 module Coolpay
   class Client
 
