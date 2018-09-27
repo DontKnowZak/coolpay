@@ -2,6 +2,8 @@ require 'rest-client'
 require 'json'
 module Coolpay
   class Client
+    attr_reader :token
+
     def initialize
       @url = 'https://coolpay.herokuapp.com/api/'
     end
