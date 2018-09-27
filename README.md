@@ -23,7 +23,7 @@ Notes:
 
 This app is a demonstration of integrating an API into a system. I set out with the 4 features above in mind and the app can accomplish all of them.
 
-The app is proof of concept and due to time constraints some areas aren't fully flesh out, I would be happy to discuss the progress and plans for the project; the next steps are likely as follows:
+The app is proof of concept and due to time constraints some areas aren't fully fleshed out, I would be happy to discuss the progress and plans for the project; the next steps are likely as follows:
 
 - More thorough testing for edge cases, missing or incorrect arguments etc.
 
