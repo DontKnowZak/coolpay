@@ -22,13 +22,16 @@ module Coolpay
       recipient = JSON.parse(response)['recipient']
     end
 
-    def make_payment(amount, recipient, currency: @currency, token: @token)
+    def make_payment(amount, recipient_id, currency: @currency, token: @token)
       response = RestClient.post @url + 'payments', {"payment": {
         "amount": amount,
         "currency": currency,
-        "recipient_id": recipient
+        "recipient_id": recipient_id
         }}, {'Authorization': 'Bearer '+ token}
       payment = JSON.parse(response)['payment']
+    end
+
+    def payment_status(payment_id)
     end
   end
 end
